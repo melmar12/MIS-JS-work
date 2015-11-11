@@ -1,0 +1,428 @@
+<html>
+<head>
+<style type="text/css">
+body {font-family:Comic Sans MS;}
+</style>
+<script language="javascript">
+<!--
+function fred()
+{
+//
+// There are 25 questions related to the HTML objects shown on the page
+// They are all in the form named "form1".
+//
+// Each part of the assignment below instructs you to manipulate or examine
+// the value of the HTML elements and place an answer in one
+// of twenty-five span blocks that appear on this page.
+//
+// e.g., for span block named "ans1" you will say:
+//
+// ans1.innerHTML = "some string";
+//
+//
+// the questions 1 through 15 below use the string value from the textarea named "myfood"
+// store it in a variable named "food" like this
+
+	food=document.alice.myfood.value;
+	len_food=food.length;
+
+//
+// *** Then remove all the periods from the "food" string before you answer questions 1 through 15
+//
+
+	var temp1 = food.split(".");
+
+	food = temp1.join("");
+
+//
+// ***(1) how many words are the string named "food"? (words not characters)
+// ***    show the answer in the span block  with id = "ans1"
+//
+    var foodWords=food.split(" ");
+	
+    ans1.innerHTML=foodWords.length;
+//
+// ***(2) store words in the string "food" in an array. 
+// ***    show the first and last elements of the array in the span block with id="ans2"
+//
+	ans2.innerHTML=foodWords[0] + foodWords[foodWords.length - 1];
+//
+// ***(3) show each word in the array produced in (2) above on one line separated by commas
+// ***    in the span block  with id="ans3"
+//
+	ans3.innerHTML=foodWords.join();
+//
+// ***(4) create a new string using the value of "food" where all the characters are capitalized
+// ***    show the new string  in the span block  with id="ans4"
+//	
+	var foodCaps = food.toUpperCase();	
+
+	ans4.innerHTML=foodCaps;
+//
+// ***(5)  count the number of times the letters "a", "e", "i", "o", "u" appear in the string "food"
+// ***     show these 5 counts on one line separated by commas in the span block  with id="ans5"
+//
+	var counts = [0,0,0,0,0];
+
+	for(i=0; i<food.length; i++)
+	{
+		if(food.charAt(i) == "a")
+			counts[0]++;
+		if(food.charAt(i) == "e")
+			counts[1]++;
+		if(food.charAt(i) == "i")
+			counts[2]++;
+		if(food.charAt(i) == "o")
+			counts[3]++;
+		if(food.charAt(i) == "u")
+			counts[4]++;
+	}	
+	
+	ans5.innerHTML= counts.join();
+//
+// ***(6)  show the location of each occurence of the character "e" in the string "food"
+// ***     on one line separated by commas in the span block  with id="ans6"
+//
+	var locations = [];
+	var place = 0;
+
+	for(i=0; i<food.length; i++)
+	{
+		if(food.charAt(i) == "e")
+		{
+			locations[place] = i;
+			place++;
+		}
+	}	
+	ans6.innerHTML=locations.join();
+//
+// ***(7)  show the location where each word begins in the string named "food" (after the periods have been removed)
+// ***     show the answers on one line separated by commas in the span block  with id="ans7"
+//
+	var locations = [0];
+	var place = 1;
+
+	for(i=0; i<food.length; i++)
+	{
+		if(food.charAt(i) == " ")
+		{
+			locations[place] = i + 1;
+			place++;
+		}
+	}
+
+	ans7.innerHTML=locations.join();
+//
+// ***(8) place the words in the string "food" in a table with a one pixel border,
+// ***    with a gray backgound. Use only four cells per row. Empty cells should contain
+// ***    the word "null". Show the table in the span block with id="ans8"
+//
+
+	//todo: undefined needs to say "null"
+	var foodWords=food.split(" ");
+	var stuff = [];
+
+	for (i=0; i<foodWords.length; i += 4)
+	{
+		stuff= stuff + "<tr>" + "<td>" + foodWords[i] + "</td>" + "<td>" + foodWords[i + 1] + "</td>" + "<td>" + foodWords[i + 2] + "</td>" + "<td>" + foodWords[i + 3] + "</td>" + "</tr>";
+	}
+
+	ans8.innerHTML='<table border=1 bgcolor="gray">' + stuff + '</table>';
+	// TODO: fix "undefined"
+//
+// ***(9)  replace each occurence of the blank character in "food" with the character "*"
+// ***     show the result in the span block  with id="ans9"
+//
+	var replaceStuff = food.split(" ");
+	var someStuff = "";
+	for (var count=0; count < replaceStuff.length; count++)
+	{
+		someStuff = someStuff + replaceStuff[count] + "*";
+	}
+
+	ans9.innerHTML=someStuff;
+	//TODO: this ok? * at the end ok?
+//
+// ***(10)  sort the words in array created in (2) into alphabetical order
+// ***      show the results in the span block with id="ans10" on a single line
+//
+	var alphaOrder = foodWords;
+	ans10.innerHTML=alphaOrder.sort();
+	//TODO: case sensitive matter? 
+//
+// ***(11)  show the ASCII character number of each character in the string "food"
+// ***      separate each value with a comma and place the result on a single line in the span block
+// ***      with id="ans11"
+//
+	var someString = "";
+	for (i=0; i < foodWords.length; i++)
+	{
+		var theCode = foodWords[i].charCodeAt();
+		someString = someString + theCode + ",";
+	}
+	ans11.innerHTML=someString;
+//
+// ***(12)  count the number of words in the string "food" that have 2,3,4,5 or 6 characters
+// ***      show these five counts on a single line separated by commas in the span block with id="ans12"
+//
+var countTwo = 0;
+var countThree = 0;
+var countFour = 0;
+var countFive = 0;
+var countSix = 0;
+for (i=0; i < foodWords.length; i++)
+{
+	var theLength = foodWords[i].length;
+	if (theLength == 2){
+		countTwo++;
+	}
+	if (theLength == 3){
+		countThree++;
+	}
+	if (theLength == 4){
+		countFour++;
+	}
+	if (theLength == 5){
+		countFive++;
+	}
+	if (theLength == 6){
+		countSix++;
+	}
+}
+	ans12.innerHTML=countTwo + "," + countThree + "," + countFour + "," + countFive + "," + countSix;
+//
+// ***(13)  create a new string that contains the words in the string "food" in reverse order
+// ***      show this new string on a single line in the span block with id="ans13"
+//	
+	foodWords = food.split(" ");
+	foodWords.reverse();
+
+	/*
+	var stuff =  foodWords[0];
+
+	for (i=1; i < foodWords.length; i++)
+	{
+		stuff = stuff + " " + foodWords[i]; 
+	}*/
+
+	ans13.innerHTML=foodWords;
+//
+// ***(14)  create a new string that contains the characters in the string "food" in all capital letters
+// ***      show this new string on a single line in the span block with id="ans14"
+//
+	foodWords.reverse();
+	upperCase = "";
+
+	for (i=0; i < foodWords.length; i++)
+	{
+		upperCase = upperCase + foodWords[i].toUpperCase() + ",";
+	}	
+
+	ans14.innerHTML= upperCase;
+//
+// ***(15)  create a table with 26 locations.
+// ***      store the number of times the letter "a" appears in the string "food" in 1st location;
+// ***      store the number of times the letter "b" appears in the string "food" in 2nd location;
+// ***      store the number of times the letter "c" appears in the string "food" in 3rd location;
+// ***      store the number of times the letter "d" appears in the string "food" in 4th location;
+// ***      etc.
+// ***      show the 26 counts on one line separated by commas in the span block with id="ans15"
+//
+	foodWords = food.split("");
+	var letters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+	var letterCount = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+	
+	for (i=0; i < foodWords.length; i++)
+	{
+		for (pos=0; pos < 26; pos++)
+		{
+			if (foodWords[i].charAt(0) == letters[pos])
+				letterCount[pos]++;
+		}
+	}
+
+	ans15.innerHTML=letterCount;
+//
+// ***(16)  Examine the radio buttons and produce a list of the four "values" of the radios buttons separated by commas on a single line
+//         in the span block with id="ans16"
+
+
+	var someStuff = document.alice.r1.value;
+
+
+
+	ans16.innerHTML=someStuff + " ...idk";
+//
+// ***(17)  Show the value of the radio button which is checked and its elements number separated by a comma on a line by itself
+// ***      in the span block with id="ans17"
+//
+	ans17.innerHTML= "idk";
+//
+// *** (18) Show the elements number and value of the six checkboxes in a six-row, two-column table with a 2 pixel border
+// ***      in the span block with id="ans18"
+//
+	ans18.innerHTML="idk";
+//
+// *** (19) Show the elements number and value of the checkboxes that are checked a two-column table with a 4 pixel border
+// ***      the number of rows will depend on how many checkboxes are checked when the code is executed
+// ***      Place the table in the span block with id="ans19"
+//
+	ans19.innerHTML="idk";
+//
+// ***(20)  Show the values and option text of all the options in the select (drop down menu) named "rest" in an eight-row two-column table with no border
+// ***      in the span block with id="ans20"
+//
+	ans20.innerHTML="idk";
+//
+// ***(21)  Show the value of the radio button which is checked and its elements number separated by a comma on a line by itself
+// ***      in the span block with id="ans21"
+//
+	ans21.innerHTML="idk";
+//
+// *** Retrieve the value of the textarea named "myFood" again and store it in a variable named "food2", DO NOT REMOVE THE PERIODS FROM THIS STRING.
+// *** You will use this string for questions 22 and 23 
+//
+
+	food=document.alice.myfood.value;
+
+// *** (22) Show the sentences (not the words) in the string "food2". Each sentence should be on a line by itself.
+// ***      Place the result in the span block with id="ans22"
+//
+
+	var foodSents = food.split(".");
+	//Q: empty at position 6??
+	var sents = "";
+
+	for (i=0; i < foodSents.length-1; i++)
+	{
+		
+		if (i==foodSents.length-2)
+			sents = sents + foodSents[i];
+		else
+			sents = sents + foodSents[i] + "<br>";
+	}
+
+	ans22.innerHTML=sents;
+	//Q: word wrapping ok?
+
+//
+// *** (23) Capitalize the first letter of each sentence in "food2". Place each sentence should be on a line by itself. 
+// ***      Make sure the periods appear in the appropriate places. Place the result in the span block with id="ans23"
+//
+	var capit = "";
+
+	for (i=0; i < foodSents.length-1; i++)
+	{
+		if (i==0)
+			capit = capit + foodSents[i].charAt(0).toUpperCase() + foodSents[i].slice(1) + ". <br>";
+		else if (i==foodSents.length-2)
+			capit = capit + foodSents[i].charAt(1).toUpperCase() + foodSents[i].slice(2) + ".";
+		else 
+			capit = capit + foodSents[i].charAt(1).toUpperCase() + foodSents[i].slice(2) + ". <br>";
+	}
+
+
+	ans23.innerHTML=capit;
+	// Q: nothing at chartAt(0) for foodSents[1-4] UMMMM WHY???
+//
+// *** (24) Replace the text in the textarea "myfood" with the a single string made from the sentences you obtained in problem 23 above 
+// ***      (with appropriate capitalization and periods). Separate the sentences with a single space.
+// ***      Place a copy of this result in the span block with id="ans24"
+//
+
+	var newNew = "";
+
+	for (i=0; i < foodSents.length-1; i++)
+	{
+		if (i==0)
+			newNew = newNew + foodSents[i].charAt(0).toUpperCase() + foodSents[i].slice(1) + ". ";
+		else if (i==foodSents.length-2)
+			newNew = newNew + foodSents[i].charAt(1).toUpperCase() + foodSents[i].slice(2) + ".";
+		else 
+			newNew = newNew + foodSents[i].charAt(1).toUpperCase() + foodSents[i].slice(2) + ". ";
+	}
+
+	document.alice.myfood.innerHTML=newNew;
+
+	ans24.innerHTML=newNew;
+	//Q: just used the same loop... this ok?
+	//Q: Make another sentence array instead? 
+
+//
+// *** (25) Make the first radio button (Apples) checked.
+// ***      Make ALL six of the checkboxes checked.
+// ***      Make the select named "rest" (the drop down menu) show "Barnaby's Cafe" as the selection
+// ***      Place the string "DONE!" in the span block with id="ans25"
+	ans25.innerHTML="idk";
+
+}
+-->
+</script>
+</head>
+<body>
+<CENTER>
+<TABLE border="2" width="100%">
+<TR><TD width="120" valign="middle" align="center" bgColor="#bbbbbb"><center><IMG align="top" alt="capt webb" border=2 src="captsm.gif"><BR><span STYLE="font-size:8px">Capt. Horatio T.P. Webb</span></center></TD>
+<TD valign="middle" bgColor="#bbbbbb" colSpan="2" align="center"><center><B>ASSIGNMENT #1 Javascript<br>MIS 3371 Transaction Processing I<BR>Parks -- Spring 2015</B><BR><span STYLE="font-size:10px">Version 1 -- Last Updated 9:00 AM 1/9/2015</span></center></TD></TR></table></center>
+<form name="alice">
+<br>All the HTML elements below are in a form named "alice". View "Source" to see the 25 questions.
+<ul>
+<li>[The textarea below is named <b>myfood</b> (elements number 0)]
+<br><textarea name="myfood" rows="4" cols="80">i always have fruit for breakfast consisting of a small fruit bowl with yogurt on top of the fruit. but if it is doughnuts I always have two. sometimes they have sprinkles and sometimes not. i never have cereal or eggs. this breakfast regimen is very healthy especially the doughnuts.</textarea>
+<p><li>[The 4 radio buttons below are named: <b>r1</b> (elements 1 &rarr; 4). Their values are: "A" &rarr; "D"]
+<br><b>Breakfast Foods: <input type="radio" name="r1" value="A"> Apples&nbsp;
+<input type="radio" name="r1" value="B"> Bananas&nbsp;
+<input type="radio" name="r1" value="C"> Cherries&nbsp;
+<input type="radio" name="r1" value="D" checked> Doughnuts</b>
+<p><li>[The 6 checkboxes below are named: <b>c1</b> &rarr;  <b>c6</b> (elements 5 &rarr; 10). Their values are: "K", "M', "O", "C", "L', and "T"]
+<br><b>My burger for lunch toppings are: 
+&nbsp;<input type="checkbox" name="c1" value="K"> Ketchup
+&nbsp;<input type="checkbox" name="c2" value="M" checked> Mustard
+&nbsp;<input type="checkbox" name="c3" value="O"> Onions
+&nbsp;<input type="checkbox" name="c4" value="C" checked> Cheese
+&nbsp;<input type="checkbox" name="c5" value="L"> Lettuce
+&nbsp;<input type="checkbox" name="c6" value="T"> Tomato</b>
+<p><li>[The select (drop down menu) below is named <b>rest</b> (elements number 11). The values of the 8 options are: "b1" &rarr; "b8"] 
+<br><b>I choose my favorite restaurants for dinner from this drop down menu:<br>
+<select name="rest">
+<option value="b1">Barry's Pizza and Italian Diner
+<option value="b2">Benihana
+<option value="b3">Brennan's
+<option value="b4" selected>Brenner's
+<option value="b5">Beaver's
+<option value="b6">Backstreet Cafe
+<option value="b7">Breakfast Club
+<option value="b8">Barnaby's Cafe
+</select></b>
+</form>
+<p>
+<ol>
+<li><span id="ans1">Contents of the span block with id="ans1"</span>
+<li><span id="ans2">Contents of the span block with id="ans2"</span>
+<li><span id="ans3">Contents of the span block with id="ans3"</span>
+<li><span id="ans4">Contents of the span block with id="ans4"</span>
+<li><span id="ans5">Contents of the span block with id="ans5"</span>
+<li><span id="ans6">Contents of the span block with id="ans6"</span>
+<li><span id="ans7">Contents of the span block with id="ans7"</span>
+<li><span id="ans8">Contents of the span block with id="ans8"</span>
+<li><span id="ans9">Contents of the span block with id="ans9"</span>
+<li><span id="ans10">Contents of the span block with id="ans10"</span>
+<li><span id="ans11">Contents of the span block with id="ans11"</span>
+<li><span id="ans12">Contents of the span block with id="ans12"</span>
+<li><span id="ans13">Contents of the span block with id="ans13"</span>
+<li><span id="ans14">Contents of the span block with id="ans14"</span>
+<li><span id="ans15">Contents of the span block with id="ans15"</span>
+<li><span id="ans16">Contents of the span block with id="ans16"</span>
+<li><span id="ans17">Contents of the span block with id="ans17"</span>
+<li><span id="ans18">Contents of the span block with id="ans18"</span>
+<li><span id="ans19">Contents of the span block with id="ans19"</span>
+<li><span id="ans20">Contents of the span block with id="ans20"</span>
+<li><span id="ans21">Contents of the span block with id="ans21"</span>
+<li><span id="ans22">Contents of the span block with id="ans22"</span>
+<li><span id="ans23">Contents of the span block with id="ans23"</span>
+<li><span id="ans24">Contents of the span block with id="ans24"</span>
+<li><span id="ans25">Contents of the span block with id="ans25"</span>
+</ol>
+<br><input type="button" value="this button executes the function fred()" onClick="fred()">
+</body>
+</HTML>
